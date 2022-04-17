@@ -1,0 +1,118 @@
+body {
+    background-image: url("../starter-code/assets/home/background-home-desktop.jpg");
+}
+
+@media (max-width: 35rem) {
+    body {
+        background-image: url("../starter-code/assets/home/background-home-mobile.jpg");
+
+        background-size: cover;
+        overflow-x: hidden;
+    }
+}
+
+.flex {
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+.logo {
+    margin: 2rem;
+}
+
+
+.primary-header {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+.primary-navigation {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: hsla(0, 0%, 0%, 0.5);
+
+
+}
+
+.sr-only {
+    position: absolute;
+    left: -100vw;
+}
+
+@supports (backdrop-filter: blur(1rem)) {
+    .primary-navigation {
+        background-color: hsla(0, 0%, 100%, 0.1);
+        -webkit-backdrop-filter: blur(1rem);
+        backdrop-filter: blur(1rem);
+    }
+}
+
+.primary-navigation a {
+    text-decoration: none;
+    color: white;
+}
+
+.primary-navigation a>[aria-hidden=true] {
+    font-weight: 700;
+    margin-inline-end: 0.75rem;
+}
+
+@media (max-width: 35rem) {
+    .primary-navigation {
+        --gap: 2em;
+        z-index: 100;
+        position: fixed;
+        flex-direction: column;
+        inset: 0 0 0 30%;
+        padding: min(30vh, 10rem) 2rem;
+
+        transform: translateX(100%);
+        transition: 0.5s all ease-out;
+    }
+
+    .primary-navigation[data-visible='true'] {
+        transform: translateX(0);
+    }
+
+
+    .mobile-nav-toggle {
+        display: block;
+        position: absolute;
+        background-color: transparent;
+        background-image: url('../starter-code//assets/shared//icon-hamburger.svg ');
+        background-repeat: no-repeat;
+        width: 2rem;
+        border: 0;
+        aspect-ratio: 1;
+        top: 2rem;
+        right: 2rem;
+        z-index: 9999;
+    }
+
+    .mobile-nav-toggle[aria-expanded='true'] {
+        background-image: url('../starter-code//assets//shared//icon-close.svg');
+    }
+}
+
+@media (min-width:35em) and (max-width:55em) {
+    .primary-navigation a>span[aria-hidden='true'] {
+        display: none;
+    }
+}
+
+@media (min-width:35em) {
+
+    .primary-navigation {
+        --gap: clamp(1.5rem, 5vw, 3rem);
+        padding-block: 2rem;
+        padding-inline: clamp(3rem, 8vw, 10rem);
+    }
+
+}
+
+/* nav
